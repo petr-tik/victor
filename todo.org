@@ -1,0 +1,24 @@
+#+TODO: TODO DONE
+
+* DONE update and deploy [2/3]
+  CLOSED: [2020-01-11 Sat 01:57]
+** DONE convert all pelican to Hugo
+   CLOSED: [2019-02-23 Sat 15:52]
+** DONE Deploy on GitHub pages
+   CLOSED: [2019-05-10 Fri 22:18]
+   Content in markdown or org, CI job to generate website, if no errors, push it to gh-pages as html
+* TODO Future nice-to-haves
+** TODO page with all posts broken into categories
+** TODO homepage 
+**** TODO render 10 most recent posts in data descending order
+**** TODO render recent reviews
+**** TODO inherit from base kiss template
+* TODO add code copy button [0/4]
+** TODO Add templates for
+*** TODO index
+*** TODO list
+*** TODO post
+** TODO Add buttons to javascript and css
+** TODO Commit 
+** TODO Choose 1 theme, nuke the other
+   

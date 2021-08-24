@@ -1,0 +1,8 @@
+---
+title: "Who dis?"
+hidden: true
+---
+
+This is my page, where I will write about software projects, books and other ideas that interest me.
+
+In my free time, I read books (not as much as I should), play chess and travel. 

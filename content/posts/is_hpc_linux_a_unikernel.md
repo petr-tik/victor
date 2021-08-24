@@ -1,0 +1,59 @@
++++
+title = "Use dumb technology"
+author = ["Petr Tikilyaynen"]
+lastmod = 2020-01-04T23:18:29+00:00
+tags = ["kernel"]
+categories = ["hacking"]
+draft = true
+description = "Is anything trying to get out of Linux?"
++++
+
+Bjarne Stroutsop once said that `Inside C++ there is a smaller, simpler language trying to get out`. From my thought experiments, <span class="underline">limited</span> understanding and conversations with practitioners, I think that there might be a unikernel trying to get out of Linux.
+
+Looking at areas where Linux is used as a high-performance foundation layer in latency-critical environments, one of the most useful characteristics of Linux seems to be the interface that allows programmers to minimise their reliance on the OS itself.
+
+One such field is automated trading systems, where receiving networking packets,
+running them through a maths model and sending outbound requests microseconds
+slower can cost you real money, really quickly.
+
+People building such systems follow several principles:
+
+1.  Avoid the kernel wherever possible
+2.  If you need something from the kernel, minimise interactions with it
+3.  Choose HW-friendly data structures to keep CPU caches warm
+
+4.  Avoid the kernel
+
+The OS manages the hardware, which means your application needs to ask the OS
+for permission every time you want to access files, send network packets or acquire more memory.
+Making system calls (syscalls for short) to get those permissions from the kernel involves a costly
+context switch.
+
+Many tricks and kernel bypasses have been developed to avoid interacting with the OS.
+
+1.1. User-space networking
+
+If your main problem is how to receive and process network packets efficiently,
+making 2 context switches for every packet is prohibitively expensive.
+
+While Linux ships with a highly optimised TCP/IP network stack, many people go
+out of their way to avoid using it. Instead, low-latency NIC manufacturers ship
+a user-space library with a TCP/IP stack and give their cards an interface to
+map network buffers directly to memory of your process.
+
+This looks awfully familiar to the driver-model adopted by unikernels, which
+provides speed as well as increasing safety guarantees that errors in networking
+will be minimised.
+
+1.2. Lock-free structures
+
+One of the way of making resources thread-safe is with mutual exclusivity
+primitives like locks, which uses the `futex` syscall on Linux. Not only does
+this involve a system call, it might also lead to contention and starving
+inactive threads by locking the resource that they need to proceed.
+
+Adopting lock-free algorithms and structures allows us to avoid these problems.
+
+My high-level explanation of lock-free vs locking is lowering contention from
+kernel level (futex) to hardware-level (atomic integer instructions). In
+practice, mutexes use a combination of atomics and system calls.

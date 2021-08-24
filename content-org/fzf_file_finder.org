@@ -1,0 +1,56 @@
+#+TITLE: Fzf_file_finder
+
+* DONE Life recently                                      :shell:@hacking:
+  CLOSED: [2021-06-26 Sat 16:45]
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: recently_june_2019
+  :EXPORT_DATE: 2021-06-26
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "What have I been up to recently?"
+  :END:
+
+** fzf
+If you haven't already tried fzf - go do it now.
+
+** Fuzzy file finder
+The default command and binding to Ctrl-T gives you an interactive file finder in the current working directory.
+
+fzf doesn't support sorting and seems to produce the list of files non-deterministically. In my experience, it is most useful to look up the most recently modified files, so it would make sense to sort the files in descending order of modification time.
+
+** Implementation
+#+BEGIN_SRC bash
+# Get all files print their mtimes and sort them by most recently modified first
+export FZF_CTRL_T_COMMAND="fd . --type f --exec stat --printf='%y %n\n' | sort -nr"
+
+# we defined the printf format in the command env variable and can retrieve the filename
+# from column 4
+export FZF_CTRL_T_OPTS="-m --delimiter=' ' --with-nth=4 --height=91% --preview 'bat --style plain --color=always {4}'"
+
+# since my FZF_CTRL_T_COMMAND produces lines in the following format
+# 2021-06-26 00:26:36.600153892 +0100 pandas_vs_duck.py
+# when selecting a file, i need to cut all but the last column (used for sorting)
+__pt_fzf_select__() {
+  local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | cut -b3-"}"
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m | while read -r item; do
+    # the only difference from standard __fzf_select__
+    echo "$item" | cut -d' ' -f4 | xargs printf '%s '
+  done
+  echo
+}
+
+# carbon copy of fzf-file-widget that calls my fzf_select function instead
+pt-fzf-file-widget() {
+  local selected
+  selected="$(__pt_fzf_select__)"
+  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected${READLINE_LINE:$READLINE_POINT}"
+  READLINE_POINT=$(( READLINE_POINT + ${#selected} ))
+}
+
+# override the binding installed by sourcing fzf.bash
+bind -m emacs-standard -x '"\C-t": pt-fzf-file-widget'
+#+END_SRC
+
+*** Caveats
+Calling =stat= on every file incurrs significant overhead on HDDs and NFS drives, so avoid this if you use fzf in those environments.

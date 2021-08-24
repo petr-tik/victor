@@ -1,0 +1,14 @@
+#+HUGO_BASE_DIR: ~/Coding/test_site/
+#+HUGO_SECTION: posts/
+* TODO Implementing read-only mode in tantivy         :rust:tantivy:@hacking:
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: read_only_tantivy
+  :EXPORT_DATE: 2019-06-20
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description ""
+  :END:
+** Implementing read-only for tantivy 
+There are 2 
+*** Build a stack trace of an index-writing application
+*** Build a stack trace of an index-reading application
+*** Diff them to find what is unnecessary for reading
+
