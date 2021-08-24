@@ -2,7 +2,11 @@
 #+HUGO_SECTION: posts/
 #+TITLE: Devtools_pull_vs_push
 
-* Developer tools that pull their weight
+* TODO Developer tools that pull their weight :ide:lsp:tools:@hacking:
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: pull_vs_push_devtools
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "Help people where they are"
+  :END:
 ** Intro/Developer tooling is improving
 *** Industry maturing around the usefulness of multiple code checks
 We started with hacking something together, but increasingly even the less software-oriented business are converging on the importance of deep checks.
