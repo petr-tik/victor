@@ -5,6 +5,7 @@
 * TODO Developer tools that pull their weight :ide:lsp:tools:@hacking:
   :PROPERTIES:
   :EXPORT_FILE_NAME: pull_vs_push_devtools
+  :EXPORT_DATE: 2021-08-24
   :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "Help people where they are"
   :END:
 ** Intro/Developer tooling is improving
