@@ -1,0 +1,30 @@
+baseURL = "http://petr-tik.github.io/"
+languageCode = "en-us"
+title = "Software and puns"
+enableRobotsTXT = true
+summaryLength = 0
+PygmentsCodeFences = true
+PygmentsStyle = "emacs"
+
+# [permalinks]
+  # posts = "/:title"
+  
+[params.rss] # Adding this tag enables RSS feed
+includeContent = false # Includes whole content in rss
+authorName = "Petr Tikilyaynen" # Author full name
+
+[params.info]
+adsense = "" # Adsense ID (ID only, without ca-pub-)
+homeTitle = "" # Title for home page
+poweredby = false # Adds powered by hugo and kiss below Copyright
+
+[params.social]
+twitter = "petr_tik"
+github = "petr-tik"
+rss = "index.xml" # Add this to show RSS button in social.
+
+[params.social.config]
+platforms = ["github","twitter"]
+
+[params.sections_left]
+"/about" = "whoami"

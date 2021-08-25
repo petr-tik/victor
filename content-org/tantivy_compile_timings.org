@@ -1,0 +1,33 @@
+#+HUGO_BASE_DIR: ~/Coding/test_site/
+#+HUGO_SECTION: posts/
+* DONE Investigating long compile times of a rust library
+  CLOSED: [2019-09-22 Sun 14:48]
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: cargo_timings_tantivy
+  :EXPORT_DATE: 2019-09-22
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "What are you waiting for when you library compiles"
+  :END:
+
+Below are my findings when using the new rustc nightly feature and time the compilation stages of a medium-size Rust library. 
+
+I've been contributing to [[https://github.com/tantivy-search/tantivy/][tantivy]], a search and indexing library for Rust and [[https://github.com/tantivy-search/tantivy-py][Python]]. Building it locally on my relatively weak laptop and in beefier CI machines takes a long time. I want developers using tantivy to have a great user experience, which includes quick compile times. 
+
+** Difference between debug and release
+Compiling 
+
+> Pro-tip.
+If you use sccache to share pre-compiled libraries across different projects on 1 machine, you might have set the RUSTC_WRAPPER env variable. This can cause calls to cargo nightly misbehave. 
+Unset the env variable before running the command. 
+
+#+BEGIN_SRC bash
+RUSTC_WRAPPER= cargo +nightly build -Z timings --release
+RUSTC_WRAPPER= cargo +nightly build -Z timings --debug
+#+END_SRC
+
+** How to predict if a crate will be fast to compile?
+** Which crates take the longest in each mode? 
+** Which crates change from debug to release? 
+*** Faster
+*** Slower
+** Low-hanging fruit to explore
+** 

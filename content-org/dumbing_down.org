@@ -1,0 +1,32 @@
+#+HUGO_BASE_DIR: ~/Coding/test_site/
+#+HUGO_SECTION: posts/
+
+* TODO Use dumb technology                                          :@life:
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: go_dumb
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "Slow and steady wins the race"
+  :END:
+  Move to a dumbphone as main device, but keep an iPhone and use it every 3-4 days for non-urgent needs. 
+** Phone
+*** Functionality
+**** Want to lose
+     aimless browsing 
+     todo lists on the go
+     Checking things without actioning them - read email on my phone and mark it unread, so I can reply, when I'm at my computer.
+**** Use iPhone to get back
+     maps abroad
+     banking - urgent
+     uber
+**** Need to replace
+     calendar
+     Reminders
+     Directions/maps
+*** Options
+**** Super dumb 
+     no data, no music, no headphones, no camera. Only calls and texts.
+**** Somewhat dumb 
+     basic data + whatsapp, music, possibly a camera.
+     https://www.argos.co.uk/product/8203225
+**** Semi-smart 
+ maps, whatsapp, music, possibly email.
+

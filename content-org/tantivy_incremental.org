@@ -1,0 +1,18 @@
+
+** debug
+
+   CARGO_BUILD_PIPELINED=true cargo +nightly build
+    Finished dev [unoptimized + debuginfo] target(s) in 4m 17s
+
+** release
+*** pipeline
+cargo clean
+CARGO_BUILD_PIPELINING=true cargo +nightly build --release
+    Finished release [optimized] target(s) in 8m 21s
+**** after find src/ -name '*.rs' | xargs touch
+CARGO_BUILD_PIPELINING=true cargo build --release
+   Compiling tantivy v0.10.0-dev (/home/petr_tik/Coding/tantivy)
+   Finished release [optimized] target(s) in 1m 34s
+*** standard
+    Finished release [optimized] target(s) in 8m 09s
+

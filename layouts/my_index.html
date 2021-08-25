@@ -1,0 +1,31 @@
+{{ partial "header" . }}
+{{ partial "nav" . }}
+
+
+<section class="section">
+<div class="homepage-content">
+    <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+    Hello stranger! *waves*
+</div>
+<div>
+    Welcome to my corner of the internet. Here you can find my write-ups of projects, books and other ideas that I find interesting.
+</div>
+<div>
+    <!-- 10 most recent articles: -->
+    {{ range first 5 .Pages }}
+    <article class="post">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </article>
+    {{ end }}
+</div>
+<div>
+    
+    Below are the books and papers I have written my opinion about:
+    <!-- {{ range first 2 .Site.Taxonomies.notes }} -->
+    <!-- <article class="review"> -->
+    <!-- {{ .Render "title" }} -->
+    <!-- </article> -->
+    <!-- {{ end }} -->
+</div>
+</section>
+

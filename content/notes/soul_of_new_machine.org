@@ -1,0 +1,56 @@
+---
+title: "Reviewing The Soul of a New Machine"
+description: "Differences in engineering cultures"
+date: 2019-02-19T23:22:33Z
+draft: false
+category: notes
+tags:
+ - journalism
+ - tech
+ - book
+---
+
+Bryan Cantrill recently recommended "The Soul of a New Machine". 
+
+{{< tweet 1091147416592674817 >}} 
+
+It is a story about the Data General corporation building a new generation 32-bit (what a time) computer to compete with DEC's VAX. 
+
+Below are my notes from the book. 
+
+** Business-savvy developers
+According to the book, people in Data General didn’t feel or act siloed according to their business function.
+
+Tom West focuses on the Eagle as a profitable project that will win market share from DEC. The technological aspects were decided by assessing trends of customer demands. Tom didn't take it up as an experiment for the sake of tech, he promised a business deliverable with a market-driven deadline.
+
+Ed Rasala, who ran the hardware dev team, applied to Data General after seeing their job ad in a paper. He drove to the office and presented himself for an interview.
+
+Nowadays, there is a belief that business people are qualitatively different in values and actions from technologists. Developers are treated like yak shavers who don't care about business impact and obsess over the nitty gritty of new technologies. The business acumen expressed by Tom West and Ed Rasala could be a sign of a different time or lucky artefact of hiring people from different backgrounds.
+
+The early commercial success of Data General is another possible explanation. The company was profitable through technology, so technologists bought into the idea of impacting the bottom line.
+
+** Leadership/mentorship
+Alsing gave a task to young engineers, whose completion depended on some information from secretary. I like that method of teaching the value of cooperation and appreciation for non-technical members of the team.
+
+West's management style suggests that the flipside of autonomy, so coveted by engineers, is abandonment. Giving his team restricted resources and little emotional support gave them the us-against-management mentality. This mentality brought the team together, but at the cost of human relationship that West could have had. At the start of the book, West was described as a jovial man, who invited his team to his house, where he cooked ribs and gave people beer. Towards the end, he purposefully avoids contact. 
+
+** Product vision
+Tom West shows a different type of product obsession than that of Steve Jobs.
+
+West was an engineer and he understood that engineering isn't magic, which can be made perfect. Some of his maxims were:
+
+=Not everything worth doing is worth doing well.=
+
+=There's no such thing as a perfect design.=
+
+Contrast that with Steve Jobs, who was a humanities person in engineering. Steve insisted that the motherboard in early apple computers had to be aesthetically pleasing. This caused additional problems for hardware designers, who now had to pack functionality under 2-dimensional constrains: physics of the board and Steve's sense of beauty. He drove his designers up the wall with his requirements, while keeping a tight deadline. 
+
+Their ability to deliver small hardware proved useful in the future, when Apple started producing slimmer laptops than most competitors. 
+
+I think it was accidental, rather than Jobs' foresight.
+
+** Tom West’s personal attitude to computers
+Tom West was aware of the downsides of technology. Smarter checkout kiosks make the staff less intellectually capable to do mental arithmetic.
+
+He also insisted on keeping no computers at home for personal use. His attitude so early in the development of personal computers seems prescient now.
+

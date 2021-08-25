@@ -1,0 +1,90 @@
+#+HUGO_BASE_DIR: ~/Coding/test_site/
+#+HUGO_SECTION: posts/
+
+* DONE Life recently                                      :thoughts:tantivy:@hacking:
+  CLOSED: [2019-08-11 Sun 00:01]
+  :PROPERTIES:
+  :EXPORT_FILE_NAME: recently_aug_2019
+  :EXPORT_DATE: 2019-08-11
+  :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :description "What have I been up to recently?"
+  :END:
+
+Moved into a new flat, enjoying having a gym with a sauna and yoga classes in the same building. On that note, started going to yoga. 
+
+** Tantivy 
+   The project is growing. We now have official python bindings thanks to the hard work of a new contributor and PyO3-pack. 
+
+   I have contributed a couple of patches - internal code tidy-ups + some user-facing features. 
+   
+   Paul has started a discussion about the 1.0.0 version milestone and what features/tickets we need to resolve in order to get there. 
+   I like his emphasis on the distinction between the value of hitting 1.0.0 and promoting/improving the adoption of tantivy. 
+
+   I have opened a [[https://github.com/tantivy-search/tantivy/issues/617][ticket to add support for nested documents]], because I think it will help the adoption of our library. 
+** Arrow as a common format for data intensive applications
+   Spent a good amount of time learning about the Apache Arrow project
+
+   It has a convincing proposal for a data format that is efficient on modern
+   hardware and available across language boundaries at a minimal cost. Using
+   insights from columnar stores, arrow wants to provide the building blocks
+   processing of data in memory.
+
+   Using arrow enables different processes open a shared memory buffer with
+   Arrow data to read and write. Imagine starting a JVM application that
+   processes data from a system like Hadoop and exposes it inside a shared
+   memory buffer, so a python process can do analytics on it.
+
+   Combines people's experience in building data-intensive analytics
+   applications and understanding of systems engineering to make a format that
+   is user- and hardware- friendly.
+
+   Learnt that pandas represents a column of strings as a column of pointers to
+   heap-allocated Python string objects. This makes it inefficient with respect
+   to CPU caches and memory prefetching, when you are iterating over all the
+   values in the column. Arrow gets it right by writing one contiguous string
+   object and keeping an array of indices marking the start and end of strings
+   that are rows in the table. Winner, winner - chicken dinner.
+
+   Arrow already has libraries in a few major languages (C++, Python, Java), as
+   well as ongoing work to make it more efficient (think SIMD and JIT
+   compilation).
+
+   Would like to contribute to the project, if I get the time.
+** Abstraction as a way of seeming smart 
+   Had an interesting conversation with a CTO of a trading firm recently. The conversation produced more questions than answers. 
+   As a result, I started thinking about the following
+
+#+BEGIN_QUOTE
+What makes someone think you are smart?
+#+END_QUOTE
+*** Why does it matter?
+    "Smart" is an property that is poorly defined, yet sought after from childhood. 
+
+    Dating, choosing friends, hiring are times when you have to choose if you want to belong to a group of people. Many people prioritise "being around smart people" to make that decision. 
+
+    I find the term is overloaded and few people take time to define it, even on their own pursuit of smart friends/coworkers/partners. 
+
+    Below is one of the ways that some people use to identify a "smart" person, but YMMV. 
+*** Allow people to see their story in your words
+    People seem to think someone is "smart", if they generally like them. Listening and hearing the other person is a good way to be liked. 
+
+*** Abstraction as an invitation of their thoughts into your world
+    The quote below is often attributed to Eleanor Roosevelt. 
+   
+#+BEGIN_QUOTE
+ Great minds discuss ideas; average minds discuss events; small minds discuss people.
+#+END_QUOTE
+
+    Talking about people (celebrities, friends or relatives) gives people the
+    opportunity to express themselves by saying something about that person.
+    Even if you are discussing a mutual friend or a celebrity, the maximum your
+    conversation partner can contribute is what they think of someone else's
+    story.
+
+    A conversation about an event is binary - they were either present and can share their experience or they weren't and have nothing to say.
+
+    Discussing ideas has the greatest surface area of opportunity for your conversation partner to connect their experience and thoughts with what you are saying. 
+    
+    Therefore, when you discuss ideas 
+
+
+
