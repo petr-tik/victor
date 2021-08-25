@@ -1,0 +1,394 @@
++++
+title = "Improving the take home assignment"
+author = ["Petr Tikilyaynen"]
+date = 2019-05-15T22:51:00+01:00
+lastmod = 2019-05-18T00:37:39+01:00
+tags = ["interviewing"]
+categories = ["hacking"]
+draft = false
+description = "Efficiently assessing programmers on realistic problems"
++++
+
+Interviewing software developers using algorithmic puzzles on HackerRank/skype is proving contentious.
+People feel that companies using algorithms aren't assessing the relevant skills. This drives applicants away from certain companies.
+
+Some companies use a take home assignment instead. Candidates receive a technical specification of a problem and have to send back a solution.
+
+Take home tests have their disadvantages. They demand more time from candidates to complete and interviewers to mark, which extends the interview process.
+
+However, they allow candidates to use their own IDE, keyboard, google necessary information and think about the problem without time pressure.
+
+In this article, I assume that a good take home assignment deserves candidates' time and attention and outline how to make the assignment useful to interviewers and enjoyable to interviewees.
+
+
+## If take home tests aren't broken, why fix them? {#if-take-home-tests-aren-t-broken-why-fix-them}
+
+Most take home tests in their current form still suffer from 2 problems.
+
+Firstly, the candidate is asked to write a solution from scratch.
+Secondly, the solution is assessed as a self-contained piece of code that isn't used afterwards.
+
+Professional software developers rarely write programmes from scratch (sorry fans of greenfield development) that aren't refactored afterwards.
+
+I propose a new method of assigning and grading take home tests that assesses those two qualities in candidates.
+
+
+## Assignment {#assignment}
+
+The technical specification of the assignment is outside the scope of this article.
+
+This article uses a common "Implement a REST API server with the following endpoints ..." format.
+
+Design a programming test that is representative of the problems in your domain and would be interesting to the candidate.
+
+
+### What are we asking the candidates to do? {#what-are-we-asking-the-candidates-to-do}
+
+Send candidates an a git repo with an existing code base made in several commits. Include a specification, which outlines new requirements.
+Candidates need to implement new requirements, commit their changes to the repo and send it back.
+
+The key point here is the existing code base, which the candidates might want to understand and refactor to solve the problem.
+
+We are testing the candidate's ability to read and understand someone else's code; refactor it to comply with new functionality, while reducing overall complexity.
+
+
+## How to grade it? {#how-to-grade-it}
+
+The submissions is assessed in three stages: computer scoring, code review by an interviewer and pair programming onsite.
+Computer scoring runs in a CI-like automated fashion with an environment consistent across languages and tools.
+The reviewer marks how easy it is to extend the code base by adding new functionality.
+During the onsite, the candidate pairs up with another interviewer to add new functionality to their submission.
+
+Overall, expect a good solution to delete more lines of code than it adds, remove now-unnecessary interfaces, implement requested features, while maintaining test coverage and resilience to bad inputs.
+
+
+### Computer scoring facets {#computer-scoring-facets}
+
+Below is an outline of assessment facets broken down into individual
+factors. Results include raw counts across several rubrics.
+
+You can compare raw scores across the same language/toolset configuration
+eg. compare the number of linter warnings across Java submissions, rather
+than comparing them against the number of linter warnings found in Python
+submissions.
+
+Where possible, I suggest a formula to evaluate raw data
+collected for that factor.
+
+Think of a composite score that combines raw data counts to give you an evaluation strategy that gives you confidence to pass/fail applicants.
+
+
+#### Functionality {#functionality}
+
+-   Number and percentage of unit tests passed
+-   Number and percentage of integration tests passed. Call the API endpoints, whose implementation was requested.
+-   Number of old endpoints that shouldn't exist anymore, but respond to inputs.
+
+    **Suggested evaluation**
+
+    Bigger is worse, 0 is good.
+
+
+#### Style, coherence and verbosity {#style-coherence-and-verbosity}
+
+-   Inserted vs deleted lines
+
+    Get the number of lines inserted and deleted in a git diff between your last commit and HEAD.
+
+    **Suggested evaluation**
+
+    Ratio as low as possible.
+
+<!--listend-->
+
+-   Number of linter warnings
+
+    Run a linter on all source files and record the summary of errors and
+    warnings. The configuration of the linter should be the same with the
+    linters you use on your code base at work.
+
+    If you are feeling mischievous, you might want to include something that
+    causes the linter to report errors in your original code and see if the
+    candidates correct your mistakes.
+
+    If you do this, make sure the linter is an obvious, easy-to-run
+    dependency. Otherwise you are punishing candidates for lack of familiarity
+    with your tool set.
+
+    **Suggested evaluation**
+
+    Fewer warnings is better.
+
+<!--listend-->
+
+-   Statistics on variable, method and class names
+
+    Extract names of all variables, methods and classes in the solution. Calculate  min, max, average and standard deviation of their lengths.
+
+    Make it more difficult by giving the functions and variables purposefully short names, before you send it to the candidate.
+
+<!--listend-->
+
+-   Documentation
+
+    Count the number of classes and methods with docstrings. If you care about
+    candidates' writing ability, you might want to extract the text
+    in the docstrings and calculate its
+    [readability](<https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid%5Freadability%5Ftests>)
+    score.
+
+<!--listend-->
+
+-   Length of functions and classes
+
+    Using static code analysis to calculate the lines of code in all methods/functions in the submission.
+
+
+#### Reliability and security {#reliability-and-security}
+
+-   Test coverage
+
+    **Suggested evaluation**
+
+    `abs(90 - UNIT_TESTS_COVERAGE_PERCENT)` - lower is better.
+
+    Someone covering a take home test with 100% unit tests suggests inability to make trade-off decisions.
+
+<!--listend-->
+
+-   Error handling
+
+    **Suggested evaluation**
+
+    Number of API endpoints crashed by malformed inputs.
+
+<!--listend-->
+
+-   Resilience to bad inputs
+
+    This is **mean**, but if you care about security, your candidates might enjoy
+    this. Run a fuzzer over the API/application and count the number of errors.
+    Make sure all submissions get the same fuzzer and fuzzing inputs.
+
+
+#### Performance {#performance}
+
+Measure the mean and standard deviation of the following runs:
+
+-   Process 100,000 correct requests.
+-   Process 100,000 malformed requests.
+-   Process 50,000 correct and 50,000 malformed requests in random order.
+
+
+### Passing or failing candidates {#passing-or-failing-candidates}
+
+Use the facets above and devise a formula or a flow chart that allows you to confidently reject/pass candidates.
+
+The most fair comparison is against the submissions completed by your engineers without prior knowledge of the test or assessment criteria.
+
+Failed submissions get a rejection email. Generate rejection summary using the collected statistics. You don't want your criteria to leak online, so it's best not to give exact details.
+
+
+### Code review and refactoring by an interviewer {#code-review-and-refactoring-by-an-interviewer}
+
+The interviewer assesses how easy it is to work with the candidate's code by
+adding another endpoint that calls into methods that the candidate has
+added.
+
+The interviewer produces a qualitative assessment of the codebase.
+
+To reduce bias, the reviewer cannot see the exact statistics from the previous section.
+
+Even then, there are other factors that might affect the reviewer. After
+grading dozens of submissions, the reviewer becomes more proficient with the
+problem. This makes them capable of working with the code regardless of the
+quality of the submission.
+
+In the future, interviewers' proficiency with the problem and experience
+reviewing submissions might prove useful, when evaluating and adding new
+assessment criteria.
+
+
+### Onsite follow up {#onsite-follow-up}
+
+If the candidate comes onsite and ask them to pair programme with someone
+from the team. Their task is to extend their original submission to include
+new functionality.
+
+You can ask them to add the same feature that the interviewer added, when
+assessing the ease of working with your code base. Else, give them another
+feature to implement. Give candidates explicit recommendation to re-read
+their submission before the onsite, if their submission was a while ago.
+
+
+## Summary of trade-offs {#summary-of-trade-offs}
+
+Below is a list of pros and cons of the suggested approach.
+
+
+### Benefits {#benefits}
+
+Collecting standardised, consistent metrics across different dimensions reduces bias in tech assessment and provides a detailed outline of candidate's skills.
+
+
+#### 1. Even closer to real-world software development {#1-dot-even-closer-to-real-world-software-development}
+
+Assesses candidates' ability to understand code, solve problems and deliver software that is easy to extend.
+
+By solving an interesting problem, applicants become more interested in the job.
+
+
+#### 2. Fast, systematic assessment across clear, predetermined criteria {#2-dot-fast-systematic-assessment-across-clear-predetermined-criteria}
+
+Once you agree and set up grading infrastructure, every submission will run
+against the same battery of tests and populate an excel spreadsheet with
+results.
+
+This enables you to progress/fail applicants in the amount of time it takes one of your developers to kick off the evaluation framework on the submission.
+
+
+#### 3. Ability to score and re-evaluate new submissions against those of previous candidates {#3-dot-ability-to-score-and-re-evaluate-new-submissions-against-those-of-previous-candidates}
+
+Storing all submissions in perpetuity enables us to add new metrics retrospectively.
+After adding the new metric to the assessment framework, rerun it on all
+submissions to add new score.
+
+
+#### 4. Assess different aspects with the same test {#4-dot-assess-different-aspects-with-the-same-test}
+
+Different teams in the same company can use the same exercise but prioritise one rubric over all others.
+
+For example, candidates applying for a role in the performance-focussed team are expected to submit solutions with above-average performance.
+
+
+#### 5. Offer candidates more freedom of choice than a typical greenfield take home test {#5-dot-offer-candidates-more-freedom-of-choice-than-a-typical-greenfield-take-home-test}
+
+In a "greenfield" take home test candidates have no choice but to implement a
+solution from scratch. Sending applicants an existing repo gives them the option,
+but not the obligation, to refactor the code or **nuke** the current code and start from scratch.
+
+If they can delete all of the previous code and then complete the task in a
+given number of hours, while keeping it simple to read and test - we want
+to see that too.
+
+
+### Disadvantages {#disadvantages}
+
+
+#### 1. Too close to real-world software development {#1-dot-too-close-to-real-world-software-development}
+
+Candidates are people too, they want to relax in their
+free time, not read and write more code.
+
+**Mitigation strategies**
+
+-   Make sure the test can be completed in the advertised time
+
+    Measure how long it takes 3-5 developers in your company to do the test.
+
+    Picard management tip.
+
+    If you lure candidates in with a promise of "only takes a couple of hours" into a test
+    that took your team half a day, people end up feeling
+    disappointed with themselves and angry at you.
+
+    _Scaring_ them with a pessimistic time estimate sets their expectations
+    higher than necessary. Completing the test faster than expected gives them a
+    dopamine kick.
+
+    ```python3
+    fear_factor = 1.5
+    min_time = actual_min_time * fear_factor
+    max_time = actual_max_time * fear_factor
+    coworkers_who_did_it = get_number_of_teammates_who_did_the_test()
+
+    return "{X} of your prospective team mates took between
+           {Y} and {Z} hours doing the test".format(
+           X=coworkers_who_did_it,
+           Y=min_time,
+           Z=max_time)
+    ```
+
+<!--listend-->
+
+-   Sell the company and role to the candidate before the test
+
+    Organise a phone call to pitch the company and the role enough for candidates to want to do the take home test.
+
+    Cynically enough, you expect a large number of applicants to fail the test, so it might feel pointless to spend time selling the company.
+    However, pitching really well at the start of the process brings a secondary effect of making a great impression on all applicants.
+    Even the candidates, who fail come away and tell their friends about your company and interview process.
+
+    This makes it easier for you to hire their friends.
+
+<!--listend-->
+
+-   Make the assignment representative/interesting of your work
+
+    Find a problem specific to your company/domain and distil it down to the
+    size of a take home assignment. Present it to candidates as a way to learn
+    more about your problem domain.
+
+<!--listend-->
+
+-   Consider paying the candidates a nominal amount for their time.
+
+    They are doing a small, representative programming assignment and should be
+    paid around 20-50 GBP. The reward makes your application process
+    stand out and help you collect valuable data from a wider pool of applicants.
+
+    This doesn't work at Google-scale of millions of applicants per year, so plan accordingly.
+
+
+#### 2. Language-specific assessment {#2-dot-language-specific-assessment}
+
+Sending a repo with existing code restricts the candidate to 1 language.
+
+Candidates proficient in that language are more likely to know about tools, code style and idioms of the language.
+
+If you care about proficiency with a specific language, ignore the
+mitigation strategies below and consider introducing language-specific
+criteria into the scoring framework.
+
+**Mitigation strategies**
+
+-   Invest upfront into grading framework for 2 or 3 main languages that your company uses
+
+    If you use more languages than you can assess submissions in, maybe you should ask yourself why are you using that many languages in the first place.
+
+
+#### 3. If assessment criteria leak online, it might skew measurements {#3-dot-if-assessment-criteria-leak-online-it-might-skew-measurements}
+
+According to Goodhart's law once a measure becomes a target, it ceases to
+be a good measure.
+
+For example, telling candidates that we calculate the ratio of inserted
+lines over deleted lines, might motivate them to play code golf to improve
+this ratio.
+
+**Mitigation strategies**
+
+-   Tell candidates about the multitude of criteria
+
+    Warn the candidates that their submissions runs through an automatic
+    assessment across several rubrics like testing, style and performance.
+    This gives participants fair warning and the opportunity to decide on the
+    trade-offs between time spent vs quality of submission.
+
+<!--listend-->
+
+-   Devise criteria to catch regressions across correlated variables
+
+    In the example above, the candidate playing code golf wrt lines of code
+    might resort to single letter variable names and extract white space to fit
+    into fewer lines. Counting the number of linter errors and measuring the
+    length of variable and method names helps us catch such regressions.
+
+
+## Conclusion {#conclusion}
+
+Reading and modifying existing code, while making sure it can be
+extended by someone else are some of the key skills for a programmer.
+
+I suggest approaching the take home test as a systematic way of assessing
+those skills in job applicants, while improving your reputation with them.
