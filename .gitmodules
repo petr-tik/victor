@@ -2,3 +2,7 @@
 	path = public
 	url = git@github.com:petr-tik/petr-tik.github.io.git
 	branch = master
+
+[submodule "themes/kiss2"] 
+  path = themes/kiss2
+  url = git@github.com:ribice/kiss.git
