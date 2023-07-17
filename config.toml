@@ -5,6 +5,7 @@ enableRobotsTXT = true
 summaryLength = 0
 PygmentsCodeFences = true
 PygmentsStyle = "emacs"
+theme = "kiss2"
 
 # [permalinks]
   # posts = "/:title"
