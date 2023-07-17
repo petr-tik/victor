@@ -1,7 +1,7 @@
 ---
 title: "Debugging hanging elpy on emacs"
 date: "2017-04-06"
-category: hacking
+categories: hacking
 tags: 
  - emacs
  - python

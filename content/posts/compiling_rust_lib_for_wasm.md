@@ -1,7 +1,7 @@
 ---
 title: "Compiling a Rust library to wasm"
 date: "2018-09-30"
-category: hacking
+categories: hacking
 draft: false
 tags: 
  - rust

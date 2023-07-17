@@ -1,7 +1,7 @@
 ---
 title: "Diving into CPython GC module"
 date: "2017-08-05"
-category: hacking
+categories: hacking
 draft: false
 tags: [python, gc, memory]
 description: "Reading source code for gcmodule.c"

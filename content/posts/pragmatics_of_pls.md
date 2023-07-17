@@ -1,9 +1,9 @@
 ---
 Title: "The pragmatics of programming languages"
 Date: "2018-04-26"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [python, linguistics, semantics]
+tags: [python, linguistics, semantics]
 Author: Petr Tikilyaynen
 description: "What is pythonic code in the theory of language"
 ---

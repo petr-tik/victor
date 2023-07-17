@@ -1,7 +1,7 @@
 ---
 title: "Unexpected breadth-first search"
 date: "2017-02-27"
-category: hacking
+categories: hacking
 draft: false
 tags: 
  - python

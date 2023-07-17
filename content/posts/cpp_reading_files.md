@@ -1,9 +1,9 @@
 ---
 Title: "mmap vs. ifstream to read a file"
 Date: "2017-05-14"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [cpp, linux]
+tags: [cpp, linux]
 Author: Petr Tikilyaynen
 description: "Trade-offs of reading files in C++"
 ---

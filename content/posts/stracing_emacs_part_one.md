@@ -1,9 +1,9 @@
 ---
 Title: "Stracing emacs. Part 1"
 Date: "2017-03-28"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [linux, strace, emacs]
+tags: [linux, strace, emacs]
 Author: Petr Tikilyaynen
 description: "Investigating what emacs is doing on startup"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Rust - from 0 to productive in 2 weeks"
 date: "2019-01-19"
-category: hacking
+categories: hacking
 draft: false
 tags: 
  - rust

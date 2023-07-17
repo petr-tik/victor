@@ -2,8 +2,8 @@
 Title: "Roll your own windows in emacs-gdb"
 Date: "2017-07-14"
 draft: true
-Category: hacking
-Tags: emacs
+categories: hacking
+tags: emacs
 Author: Petr Tikilyaynen
 description: "Customising the layout of gdb-many-windows in emacs"
 ---

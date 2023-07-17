@@ -1,7 +1,7 @@
 ---
 title: "Notes on python's GC"
 date: "2017-03-07"
-category: hacking
+categories: hacking
 draft: false
 tags: 
  - python

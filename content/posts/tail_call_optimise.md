@@ -2,8 +2,8 @@
 Title: "Effect of language on hackerrank performance"
 Date: "2016-10-27"
 draft: true
-Category: hacking
-Tags: [algorithms, hackerrank]
+categories: hacking
+tags: [algorithms, hackerrank]
 Author: Petr Tikilyaynen
 description: "Investigating language effect on algorithm efficiency on HackerRank"
 ---

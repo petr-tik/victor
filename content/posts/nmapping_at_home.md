@@ -1,9 +1,9 @@
 ---
 Title: "Nmaping home network"
 Date: "2017-02-27"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [networks]
+tags: [networks]
 Author: Petr Tikilyaynen
 description: "What can nmap tell us about our flatmates?"
 ---

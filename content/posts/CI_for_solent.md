@@ -6,7 +6,7 @@ tags:
  - python
  - solent
  - ci
-Category: hacking
+categories: hacking
 Author: Petr Tikilyaynen
 description:  "Thoughts on setting up own CI"
 ---

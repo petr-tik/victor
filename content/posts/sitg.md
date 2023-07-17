@@ -1,7 +1,7 @@
 ---
 title: "Talebian software development"
 date: "2018-03-10"
-category: hacking
+categories: hacking
 tags: ["thoughts"]
 draft: false
 author: Petr Tikilyaynen

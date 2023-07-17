@@ -1,7 +1,7 @@
 ---
 title: "How to update your changelog automatically"
 date: "2019-01-01"
-category: hacking
+categories: hacking
 draft: false
 tags: [bash, git]
 author: Petr Tikilyaynen

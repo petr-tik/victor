@@ -1,7 +1,7 @@
 ---
 title: "Comparing different ways to add ints II"
 Date: "2017-07-16"
-category: hacking
+categories: hacking
 draft: false
 tags: [python]
 author: Petr Tikilyaynen

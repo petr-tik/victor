@@ -1,9 +1,9 @@
 ---
 Title: "Grokking dfs and backtracking on a Graph (sort of)"
 Date: "2017-04-12"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [algorithms, graphs, dfs]
+tags: [algorithms, graphs, dfs]
 Author: Petr Tikilyaynen
 description: "Implementing a recursive solution with backtracking"
 ---

@@ -3,7 +3,7 @@ title: "Reviewing The Soul of a New Machine"
 description: "Differences in engineering cultures"
 date: 2019-02-19T23:22:33Z
 draft: false
-category: notes
+categories: notes
 tags:
  - journalism
  - tech

@@ -1,7 +1,7 @@
 ---
 title: "The immigrant apprenticeship"
 date: "2019-02-02"
-category: hacking
+categories: hacking
 draft: true
 author: Petr Tikilyaynen
 description: "On helping people around you"

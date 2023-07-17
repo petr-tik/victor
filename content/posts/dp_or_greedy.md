@@ -1,9 +1,9 @@
 ---
 Title: "Difference between DP and greedy algorithms"
 Date: "2017-04-20"
-Category: hacking
+categories: hacking
 draft: true
-Tags: [algorithms]
+tags: [algorithms]
 Author: Petr Tikilyaynen
 description: "Can Dynamic Programming be greedy?"
 ---

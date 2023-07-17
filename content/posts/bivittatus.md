@@ -1,7 +1,7 @@
 ---
 title: "Search text fast or die trie-ing"
 date: "2018-02-12"
-category: hacking
+categories: hacking
 draft: false
 tags: 
  - python

@@ -1,7 +1,7 @@
 ---
 title: "Getting clojure with Lisp"
 date: "2016-02-20"
-category: hacking
+categories: hacking
 draft: false
 tags: [clojure]
 authors: Petr Tikilyaynen
