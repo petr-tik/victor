@@ -1,0 +1,67 @@
+---
+title: "Reviewing the tech debt paper"
+date: 2023-07-21T23:22:33Z
+draft: false
+categories: notes
+tags:
+ - tech
+ - debt
+ - paper
+---
+
+My notes from the =Defining, Measuring, and Managing Technical Debt= paper.
+
+You can find the paper here.
+
+[[https://ieeexplore.ieee.org/document/10109339][https://ieeexplore.ieee.org/document/10109339]]
+
+Google decided to first survey developers about and then empirically measure tech debt.
+
+Surveys found results with wide confidence intervals, which made them hard to action and undermined trust.
+
+Survey responses are also subjective with each respondent evaluating tech debt as =a relation between the system's present state and some unimplemented ideal state.=
+
+Each respondent sees the present state through their prism and has an individual image of the ideal state.
+
+Emperical results were equally uninformative.
+
+#+begin_quote
+No single metric predicted reports of technical debt from engineers; our linear regression models predicted less than 1% of the variance in survey responses.
+#+end_quote
+
+** Summary
+The developer-centered approach is required for managing tech debt.
+
+#+begin_quote
+this situation points once again to the key role that human cognition and reasoning play in driving developer productivity: conceiving of the ideal state of a system and using that imagined state as a benchmark against which the current state can be judged might well be central to effective detection and comprehension of technical debt
+#+end_quote
+
+They whittled survey responses into 10 types of tech debt from migration, lacking documentation or testing down to team churn and slow release process.
+
+The authors acknowledge Google-specific responses
+
+#+begin_quote
+Google engineers regularly cite migrations as a hindrance, but large-scale migrations are only attempted at all because of Google’s monolithic repository and dependency system other companies may find that a large-scale migration is so impossible that it is not even attempted.
+#+end_quote
+
+They also created a tech debt maturity model with 4 categories in ascending level of maturity - reactive, proactive, strategic and structural.
+
+And recommend multiple mitigations including tools that empower developers with a data-driven, local feedback loop
+
+#+begin_quote
+Tooling that supports the identification and management of technical debt (for example, indicators of poor test coverage, stale documentation, and deprecated dependencies). [these metrics] can allow teams who already believe they have a problem to track their progress toward fixing it.
+#+end_quote
+
+
+** My impressions
+*** Survey results are only as good as the bravery of your developers' imagination.
+
+Survey responses won't be informative if your developers aren't willing or able to imagine an ideal state significantly better than what you have now. If your people have never seen well-tested or well-documented software, they will settle with the current status quo. Their satisfactory survey responses won't uncover any underlying problems that you might improve on.
+
+*** Code isn't a predictor of business success.
+
+#+begin_quote
+Overall, our emphasis on technical debt reduction has resulted in a substantial drop in the percentage of engineers who report that their productivity is being extremely to moderately hindered by technical debt or overly complicated code in their project ... This is a substantial change and, in fact, is the largest trend shift we have seen in five years of running the survey.
+#+end_quote
+
+Despite the reduction in the percentage of developers at Google hindered by tech debt, Google was caught napping by openAI and it's revenue isn't growing as quickly as it used to before they started measuring tech debt.
